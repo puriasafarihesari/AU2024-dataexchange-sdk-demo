@@ -50,12 +50,10 @@ namespace AU2024_smart_parameter_updater
             };
         }
 
-        public void SetFolder(string hubId, string projectId, string folderUrn, string collectionId)
+        public void SetFolder(string projectId, string folderUrn)
         {
-            this._hubId = hubId;
             this._projectId = projectId;
             this._folderUrn = folderUrn;
-            this._collectionId = collectionId;
         }
 
 
@@ -76,6 +74,10 @@ namespace AU2024_smart_parameter_updater
                     ExchangeId = exchangeDetails.ExchangeID,
                     HubId = hubId
                 };
+
+                //we are going to use the same collection id and the same hub for the new exchange
+                this._collectionId = exchangeIdentifier.CollectionId;
+                this._hubId = hubId;
 
                 //2 - retrieves the data from the specified exchange
                 ExchangeData exchangeData = await _client.GetExchangeDataAsync(exchangeIdentifier);

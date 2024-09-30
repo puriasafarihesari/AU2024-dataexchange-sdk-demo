@@ -34,10 +34,10 @@ namespace AU2024_smart_parameter_updater
                     dxh.Connect(cfg);
                     
                     Console.WriteLine("STEP 4 - Reading data from an existing Data Exchange");
-                    ExchangeData exData = await dxh.ReadDataExchange(cfg.ExchangeFileUrn, cfg.ClassName);                    
-                
+                    ExchangeData exData = await dxh.ReadDataExchange(cfg.ExchangeFileUrn, cfg.ClassName);
+                    
                     Console.WriteLine("STEP 5 - Create a new Exchange in ACC");
-                    dxh.SetFolder(cfg.HubId, cfg.ProjectId, cfg.FolderUrn, cfg.CollectionId);
+                    dxh.SetFolder(cfg.ProjectId, cfg.FolderUrn);
                     ExchangeDetails exDetails = await dxh.CreateExchange(cfg.NewExchangeName, "DX SDK demo exchange for AU2024");
                     
                     Console.WriteLine("STEP 6 - Populate the new exchange with data, augmenting the dataset with the excel extended data");
