@@ -43,7 +43,7 @@ namespace AU2024_smart_parameter_updater
                     Console.WriteLine("STEP 6 - Populate the new exchange with data, augmenting the dataset with the excel extended data");
                     await dxh.AddElementsToExchange(exData, exDetails, cfg.ClassName, table).ConfigureAwait(false);
 
-                    Console.WriteLine("\nPress enter to exit...");
+                    Console.WriteLine("\n Press enter to exit...");
                     Console.ReadLine();
 
                 }
