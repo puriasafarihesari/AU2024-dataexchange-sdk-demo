@@ -162,7 +162,7 @@ namespace AU2024_smart_parameter_updater
 
                         else if (param.ParameterDataType == ParameterDataType.Int32)
                         {
-                            if (param.SpecName == "Enumeration") // this may not be the best way to handle enums
+                            if (param.SpecName == "Enumeration") 
                             {
                                 pDef = ParameterDefinition.Create(param.SchemaId, ParameterDataType.String);
                                 (pDef as StringParameterDefinition).Value = param.Value;
