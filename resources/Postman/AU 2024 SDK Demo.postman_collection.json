@@ -1,0 +1,473 @@
+{
+	"info": {
+		"_postman_id": "1937f554-3948-4da2-bdff-37780e3f1561",
+		"name": "AU 2024 SDK Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2542971",
+		"_collection_link": "https://acforgeteam.postman.co/workspace/Ramboll~db54827f-693a-417a-a5a5-6453a24fef88/collection/2542971-1937f554-3948-4da2-bdff-37780e3f1561?action=share&source=collection_link&creator=2542971"
+	},
+	"item": [
+		{
+			"name": "DX GraphQL",
+			"item": [
+				{
+					"name": "Get Hubs",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetHubs {\r\n hubs {\r\n  results {\r\n    id\r\n    name\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Hub by Name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetHubs ($filter: HubFilterInput){\r\n hubs(filter: $filter) {\r\n  results {\r\n    id\r\n    name\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n  \"filter\" : {\"name\": \"Ramboll ACC Sandbox\"}\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Projects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProjects ($hubId: ID!){\r\n  projects(hubId: $hubId) {\r\n      results{\r\n          id\r\n          name\r\n      }\r\n  }\r\n}",
+								"variables": "{\r\n  \"hubId\": \"{{Hub}}\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Project By Name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProjects ($hubId: ID!, $filter: ProjectFilterInput){\r\n  projects(hubId: $hubId, filter: $filter) {\r\n      results{\r\n          id\r\n          name\r\n      }\r\n  }\r\n}",
+								"variables": "{\r\n  \"hubId\": \"{{Hub}}\",\r\n  \"filter\": {\r\n    \"name\":\"Transforming Project Delivery - PDMC - Autodesk\"\r\n  }\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Projects Folders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProjects ($hubId: ID!){\r\n  projects(hubId: $hubId) {\r\n      results{\r\n          id\r\n          name\r\n          __typename\r\n          folders {\r\n                results {\r\n                  id\r\n                  name\r\n                  __typename\r\n                }\r\n          }\r\n      }\r\n  }\r\n}",
+								"variables": "{\r\n  \"hubId\": \"b.67f5f573-642a-4ad1-a1e4-fb1f8200cbeb\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Projects Folders V2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetProjectFolders ($projectId:ID!){\r\n  project(projectId: $projectId) {\r\n    id\r\n    name\r\n    folders {\r\n      results {\r\n        id\r\n        name\r\n        __typename\r\n\r\n        folders {\r\n            results {\r\n                id\r\n                name\r\n                __typename\r\n            }\r\n        }\r\n        exchanges {\r\n            results {\r\n                id\r\n                name\r\n                __typename\r\n            }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n  \"projectId\":\"cHJvan5iLjY3ZjVmNTczLTY0MmEtNGFkMS1hMWU0LWZiMWY4MjAwY2JlYn5iLmIxYzUyYzJhLTI2N2ItNDFiYS05ZjMyLWM3MWYyMWEzNmQ1OQ\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Top Folder",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetTopFolders ($projectId: ID!){\r\n    topFolders(projectId: $projectId) {\r\n      results{\r\n          id\r\n          name\r\n          objectCount\r\n      }\r\n    }\r\n }",
+								"variables": "{\r\n   \"projectId\": \"{{Project}}\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Folders",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetFolders ($folderId: ID!){\r\n    folders(folderId: $folderId) {\r\n      results{\r\n          id\r\n          name\r\n          objectCount\r\n      }\r\n    }\r\n }",
+								"variables": "{\r\n   \"folderId\": \"Zm9sZH5iLjY3ZjVmNTczLTY0MmEtNGFkMS1hMWU0LWZiMWY4MjAwY2JlYn5iLmIxYzUyYzJhLTI2N2ItNDFiYS05ZjMyLWM3MWYyMWEzNmQ1OX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5Va01fUEJ1V1Q5T1lOTl9GYTdlYkh3\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Folder Content",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query GetFolderContent ($folderId:ID!) {\r\n  folder(folderId: $folderId) {\r\n    id\r\n    name\r\n    folders {\r\n      results {\r\n        id\r\n        name\r\n        __typename\r\n      }\r\n    }\r\n    exchanges {\r\n      results {\r\n        id\r\n        name\r\n        alternativeRepresentations {\r\n          fileUrn\r\n          fileVersionUrn\r\n        }\r\n        __typename\r\n      }\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n   \"folderId\": \"Zm9sZH5iLjY3ZjVmNTczLTY0MmEtNGFkMS1hMWU0LWZiMWY4MjAwY2JlYn5iLmIxYzUyYzJhLTI2N2ItNDFiYS05ZjMyLWM3MWYyMWEzNmQ1OX51cm46YWRzay53aXBwcm9kOmZzLmZvbGRlcjpjby5wOUV5ZWNNZFNsQzNOelVYSWF5bGFR\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Exchange Info",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query getExchangeInfo ($exchangeId:ID!){\r\n  exchange(exchangeId: $exchangeId) {\r\n    id\r\n    name\r\n    version {\r\n      versionNumber\r\n    }\r\n    lineage {\r\n      versions {\r\n        results {\r\n          id\r\n          versionNumber\r\n          createdOn\r\n        }\r\n      }\r\n      tipVersion {\r\n        versionNumber\r\n      }\r\n    }\r\n    alternativeRepresentations {\r\n      fileUrn\r\n      fileVersionUrn\r\n    }\r\n  }\r\n}",
+								"variables": "{\r\n  \"exchangeId\": \"b6f3e9c1-845e-32c4-8c57-f89dbf95d534\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2023-05/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2023-05",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Exchange Entities and Properties",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{3LeggedToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query DesignEntities($exchangeId: ID!, $categoryName: String!) {\r\n   designEntities(\r\n     filter: {exchangeId: $exchangeId, classificationFilter: {category: $categoryName}}\r\n) {\r\n   results {\r\n     id\r\n     name\r\n     classification {\r\n       category\r\n     }\r\n     referencedBy{\r\n         results{\r\n             properties{\r\n                 results{\r\n                     name\r\n                     value\r\n                 }\r\n             }\r\n         }\r\n     }\r\n      properties {\r\n        results {\r\n            name\r\n            displayValue\r\n            value\r\n        propertyDefinition {\r\n           description\r\n           specification\r\n           type\r\n           units\r\n           }\r\n         }\r\n       }\r\n     }\r\n   }\r\n }",
+								"variables": "{\r\n    \"exchangeId\": \"b6f3e9c1-845e-32c4-8c57-f89dbf95d534\",\r\n    \"categoryName\": \"Walls\"\r\n}"
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/dataexchange/2022-11/graphql",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"dataexchange",
+								"2022-11",
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "refreshRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "authRequestParams",
+				"value": [],
+				"type": "any"
+			},
+			{
+				"key": "tokenName",
+				"value": "3LOtoken",
+				"type": "string"
+			},
+			{
+				"key": "challengeAlgorithm",
+				"value": "S256",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "{{scope}}",
+				"type": "string"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://oauth.pstmn.io/v1/browser-callback",
+				"type": "string"
+			},
+			{
+				"key": "grant_type",
+				"value": "authorization_code",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{ClientSecret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{ClientId}}",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "https://developer.api.autodesk.com/authentication/v2/authorize",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "header",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "https://developer.api.autodesk.com/authentication/v2/token",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
