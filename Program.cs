@@ -28,7 +28,7 @@ namespace AU2024_smart_parameter_updater
                     Console.WriteLine("STEP 2 - Reading extended data from Excel");
                     DataTable table = ExcelHelper.ReadExcelToDataTable(cfg.Excel);
 
-                    //currently require ADMIN permissions in visual studio - can we work around this?
+                    //currently require ADMIN permissions in Visual Studio
                     Console.WriteLine("STEP 3 - Connect to the Autodesk cloud");
                     DataExchangeHelper dxh = new DataExchangeHelper();
                     dxh.Connect(cfg);
